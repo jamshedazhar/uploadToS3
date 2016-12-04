@@ -1,0 +1,39 @@
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+      <title>Upload file to S3</title>
+   </head>
+   <body>
+      <h1>Upload File to S3</h1>
+      <hr>
+      <input type="file" id="file">
+      <script>
+         /*
+          Bind listeners when the page loads.
+         */
+         $("#file" ).change(function(event) {
+           const file = event.target.files[0];
+           event.preventDefault();
+           if(file == null){
+             return alert('No file selected.');
+           } 
+           else {
+             $.get( 'sign-url', {"name":file.name, "type":file.type} ).done(function(response){
+               
+               $.ajax(response, {
+                 processData: false,
+                 crossDomain: true,
+                 contentType: file.type,
+                 type: 'PUT',
+                 data: file,
+                 success: function(response) {
+                   alert(file.name +" has been uploaded to S3");
+                 }
+               });
+             });
+           }
+         });   
+         
+      </script>
+   </body>
+</html>
