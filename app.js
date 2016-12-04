@@ -7,11 +7,11 @@ app.engine('html', require('ejs').renderFile);
 app.listen(process.env.PORT || 3000);
 
 aws.config.update({
-    accessKeyId: "AKIAJ6AWIBCDN6UEGQIQ",
-    secretAccessKey: "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"
+    accessKeyId: "ACCESS_KEY_ID",
+    secretAccessKey: "SECRET_KEY_ID"
 });
 
-const S3_BUCKET = "jamshed98768";
+const S3_BUCKET = "BUCKET_NAME";
 
 
 
